@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                tableName: currency
+      id: "lib_0001"
+      author: Ihor Soroka
+      changes:
+        - createTable:
+            tableName: currency
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: code
+                  type: varchar(5)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rate_to_base_currency
+                  type: numeric
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
